@@ -106,12 +106,12 @@ public class RetrofitActivity extends BaseActivity {
     protected void loadData() {
         CommonDialog dialog = new CommonDialog(RetrofitActivity.this, "加载中");
         dialog.show();
-        // Call<HzDataClass> call = DAL.shareDAL.baseAPIService().getCooperateBusiness(rqHz);
-        // Call<HzDataClass> call = DAL.shareDAL.baseAPIService().getCooperateBusiness1("0", "5");
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("pageIndex", "0");
-        map.put("PageSize", "5");
-        Call<HzDataClass> call = DAL.shareDAL.baseAPIService().getCooperateBusiness3(map);
+         Call<HzDataClass> call = DAL.shareDAL.baseAPIService().getCooperateBusiness(rqHz);
+        //Call<HzDataClass> call = DAL.shareDAL.baseAPIService().getCooperateBusiness1("0", "5");
+//        Map<String, String> map = new HashMap<String, String>();
+//        map.put("pageIndex", "0");
+//        map.put("PageSize", "5");
+       // Call<HzDataClass> call = DAL.shareDAL.baseAPIService().getCooperateBusiness3(map);
 
         call.enqueue(new Callback<HzDataClass>() {
             @Override

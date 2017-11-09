@@ -31,8 +31,8 @@ public interface BaseAPIService
     /**获取合作数据@Query**/
     @POST("ModelWeb/AppModel/GetCooperateBusiness")
     Call<HzDataClass> getCooperateBusiness2(@QueryMap Map<String, String> options);
-    @FormUrlEncoded
     /**获取合作数据@FieldMap**/
+    @FormUrlEncoded
     @POST("ModelWeb/AppModel/GetCooperateBusiness")
     Call<HzDataClass> getCooperateBusiness3(@FieldMap Map<String, String> options);
 

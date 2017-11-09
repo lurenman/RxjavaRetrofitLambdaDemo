@@ -37,7 +37,7 @@ public class EasyPermissionsActivity extends BaseActivity implements EasyPermiss
         RxView.clicks(tv_Requestpermission).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                //先判断有没有这个权限
+                    //先判断有没有这个权限
                 if (EasyPermissions.hasPermissions(mContext, android.Manifest.permission.CAMERA)) {
                     ToastUtils.showToast(getApplicationContext(), "已经获取相机权限0", 1000);
 
