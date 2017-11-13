@@ -1,10 +1,10 @@
 package com.example.administrator.rxjavaretrofitlambdademo.activity;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.example.administrator.rxjavaretrofitlambdademo.R;
 import com.example.administrator.rxjavaretrofitlambdademo.entity.flatMapClass;
@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2017/7/27 0027.
- *
+ * <p>
  * Observable.create()…..subscribeOn(Schedulers.io()) 创建子线程
  * Observable.just()…..subscribeOn(Schedulers.io())未创建子线程
  * Observable.from()…..subscribeOn(Schedulers.io())未创建子线程
@@ -39,6 +39,8 @@ public class RxjavaActivity extends BaseActivity {
     TextView tv_Filter;
     @BindView(R.id.tv_thread)
     TextView tv_Thread;
+    @BindView(R.id.tv_interval)
+    TextView tv_Interval;
     private flatMapClass mFlatMapClass;
 
     @Override
@@ -152,6 +154,20 @@ public class RxjavaActivity extends BaseActivity {
 /*                Observable.just(1,2,3,4).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                         .subscribe(integer ->
                                 Toast.makeText(getApplicationContext(),"线程控制:"+integer.toString(integer),Toast.LENGTH_SHORT).show());*/
+            }
+        });
+
+        RxView.clicks(tv_Interval).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+               //这个take(3)要是不指定就一直执行，这个也代表执行的次数
+                Observable.interval(2,TimeUnit.SECONDS).take(3).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        Toast.makeText(getApplicationContext(), "Interval相应", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 
